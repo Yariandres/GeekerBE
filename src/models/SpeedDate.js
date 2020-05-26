@@ -11,5 +11,5 @@ const speedDateSchema = new mongoose.Schema({
 
 });
 
-const SDModel = mongoose.model('admin', speedDateSchema)
-export default SDModel;
+const SpeedDate = mongoose.model('admin', speedDateSchema)
+export default SpeedDate;

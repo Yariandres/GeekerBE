@@ -1,6 +1,6 @@
-import Admin from './adminModel';
-import Co from './companyModel';
-import Dev from './devModel';
-import SD from './speedDateModel';
+import Admin from './Admin';
+import Company from './Company';
+import Developer from './Dev';
+import SpeedDate from './SpeedDate';
 
-export default { Admin, Co, Dev, SD };
+export default { Admin, Company, Developer, SpeedDate };

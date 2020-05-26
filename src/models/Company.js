@@ -11,5 +11,5 @@ const coSchema = new mongoose.Schema({
 
 });
 
-const CoModel = mongoose.model('admin', coSchema)
-export default CoModel;
+const Company = mongoose.model('admin', coSchema)
+export default Company;

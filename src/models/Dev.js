@@ -8,8 +8,7 @@ const devSchema = new mongoose.Schema({
         email: String,
         required: true
     },
-
 });
 
-const DevModel = mongoose.model('admin', devSchema)
-export default DevModel;
+const Dev = mongoose.model('admin', devSchema)
+export default Dev;
