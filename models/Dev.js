@@ -1,12 +1,23 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
+const validator = require('validator');
 
 const DeveloperSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Type.ObjectID,
-        ref: 'user'
+    email: {
+        type: String,
+        ref: 'user',
+        trim: true,
+        lowercase: true,
+        unique: true,
+        required: true,
+        validate: {
+            validator: (string) => validator.isEmail(string),
+            message: 'provided email is invalid',
+        }
     },
-    title: {
-        type: String
+    role: {
+        type: String,
+        required: true
     },
     location: {
         type: String
@@ -27,4 +38,6 @@ const DeveloperSchema = new mongoose.Schema({
     }
 });
 
-odule.exports = Developer = mongoose.model('developer', DeveloperSchema);
+DeveloperSchema.plugin(passportLocalMongoose)
+
+module.exports = Developer = mongoose.model('developer', DeveloperSchema);
