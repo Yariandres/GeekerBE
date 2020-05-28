@@ -10,6 +10,12 @@ app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) => res.send('API running'));
 
-const PORT = process.env.PORT || 4000;
+/*
+DEFINE ROUTES
+*/
+app.use('/api/developer', require('./routes/api/devs'));
+
+
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
