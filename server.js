@@ -6,14 +6,15 @@ const app = express();
 // Connects to DB server
 connectDB();
 
+// Init Middleware
 app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) => res.send('API running'));
 
 /*
-DEFINE ROUTES
+  DEFINE ROUTES
 */
-app.use('/api/developer', require('./routes/api/devs'));
+app.use('/api/dev', require('./routes/api/devs'));
 
 
 const PORT = process.env.PORT || 5000;
