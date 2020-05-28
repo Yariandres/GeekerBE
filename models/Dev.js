@@ -1,26 +1,25 @@
 const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
-const validator = require('validator');
 
 const DeveloperSchema = new mongoose.Schema({
     email: {
         type: String,
-        ref: 'user',
-        trim: true,
-        lowercase: true,
         unique: true,
         required: true,
-        validate: {
-            validator: (string) => validator.isEmail(string),
-            message: 'provided email is invalid',
-        }
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
     },
     role: {
         type: String,
         required: true
     },
     location: {
-        type: String
+        type: String,
+        required: true
     },
     status: {
         type: Boolean
@@ -30,14 +29,13 @@ const DeveloperSchema = new mongoose.Schema({
         required: true
     },
     bio: {
-        type: String
+        type: String,
+        required: true
     },
     createdAt: {
         type: Date,
         default: Date.now
     }
 });
-
-DeveloperSchema.plugin(passportLocalMongoose)
 
 module.exports = Developer = mongoose.model('developer', DeveloperSchema);
