@@ -1,11 +1,8 @@
 import mongoose from 'mongoose';
 
 const coSchema = new mongoose.Schema({
-    type: {
+    description: {
         type: String,
-        description: String,
-        email: String,
-        stack: String,
         required: true
     },
 
