@@ -1,10 +1,34 @@
 import mongoose from 'mongoose';
 
 const coSchema = new mongoose.Schema({
-    description: {
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+    },
+    password: {
         type: String,
         required: true
     },
+    image: {
+        type: String,
+    },
+    companyDescription: {
+        type: String,
+        required: true
+    },
+    jobDescription: {
+        type: String,
+        required: true
+    },
+    requestedSkills: {
+        type: [String],
+        required: true
+    },
+    createdAt: {
+        type: date,
+        default: Date.now
+    }
 
 });
 
