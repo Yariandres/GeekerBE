@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 // developer MODEL
@@ -33,7 +36,7 @@ router.post('/', [
     .not()
     .isEmpty()
 
-], (req, res)=> {
+], async (req, res)=> {
 
   const errors = validationResult(req);
 
@@ -43,22 +46,61 @@ router.post('/', [
 
   }
 
-  const { email, password } = req.body;
+  const { email, password, role, location, skills, bio  } = req.body;
+  
+  try {
 
-  // See if user exists
+    // See if user exists by email
+    let dev = await Developer.findOne({ email });
 
+    if (dev) {
+      return res.status(400).json({ errors: [{ msg: 'Developer already exists' }] });
+    }
 
+    dev = new Developer({ 
+      email,
+      password,
+      role,
+      location,
+      skills,
+      bio
+    });
 
-  // Get users image
-  // Empcrypt password is
-  // Return JSON web token
+    // Encrypt password
+    const salt = await bcrypt.genSalt(10);
+    
+    dev.password = await bcrypt.hash(password, salt);
 
-  console.log(req.body);
+    await dev.save();
 
-  res.send('Dev route');
+    // Return json web token
+    const payload = {
+      dev: {
+        id: dev.id
+      }
+    }
+
+    jwt.sign(
+      payload,
+      config.get('jwtSecret'),
+      { expiresIn: 360000 },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token });
+      }
+    );
+
+    console.log(req.body);
+
+  } catch (err) {
+
+    console.error(err.message);
+
+    res.status(500).send('Server Error');
+
+  }  
 
 });
-
 
 module.exports = router;
 

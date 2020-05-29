@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://Admin:geekerTACO@cluster0-whsrk.mongodb.net/test?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://Admin:geekerTACO@cluster0-whsrk.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken"
 }
