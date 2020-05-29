@@ -1,8 +1,32 @@
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
-// GET token from header
+module.exports = function(req, res, next) {
 
-// Check if no token is provided
+  // GET token from header
+  const token = req.header('x-auth-token');
 
-// Verify token 
+  // Check if no token is and route is protected
+  if(!token ) {
+    return res.status(401).json({ msg: 'No token, authorization denied'});
+  }
+
+  try {
+
+    // Verify token 
+    const decoded = jwt.verify(token, config.get('jwtSecret'));
+
+    // Assign a value to dev
+    req.dev = decoded.dev;
+
+    next();
+
+  } catch (err) {
+    res.status(401).json({ msg: 'Token is not valid' });
+  }
+}
+
+
+
+
+
