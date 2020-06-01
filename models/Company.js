@@ -13,6 +13,10 @@ const coSchema = new mongoose.Schema({
     image: {
         type: String,
     },
+    location: {
+        type: String,
+        required: true
+    },
     companyDescription: {
         type: String,
         required: true
