@@ -11,7 +11,6 @@ const Developer = require('../../models/Dev');
 // @route GET api/auth
 // @Desc 
 // @Access Public
-
 router.get('/', auth, async (req, res) => {
   
   try {
@@ -32,7 +31,6 @@ router.get('/', auth, async (req, res) => {
 // @router POST api/auth
 // @desc Authenticate dev & get token
 // @access Public
-
 router.post('/', [
 
   check('email', 'Email is required')
