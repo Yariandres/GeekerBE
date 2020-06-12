@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const coSchema = new mongoose.Schema({
     email: {
@@ -30,11 +30,10 @@ const coSchema = new mongoose.Schema({
         required: true
     },
     createdAt: {
-        type: date,
+        type: Date,
         default: Date.now
     }
 
 });
 
-const Company = mongoose.model('admin', coSchema)
-export default Company;
+module.exports = Company = mongoose.model('company', coSchema)

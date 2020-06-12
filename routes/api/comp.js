@@ -44,7 +44,7 @@ companyRouter.post('/', [
 
     }
 
-    const { email, password, companyDescription, location, requestedSkills } = req.body;
+    const { email, password, companyDescription, location, jobDescription, requestedSkills } = req.body;
 
     try {
 
@@ -60,6 +60,7 @@ companyRouter.post('/', [
             password,
             companyDescription,
             location,
+            jobDescription,
             requestedSkills
         });
 

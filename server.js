@@ -14,7 +14,8 @@ app.get('/', (req, res) => res.send('API running'));
 /*
   DEFINE ROUTES
 */
-app.use('/api/dev', require('./routes/api/devs'));
+app.use('/api/dev', require('./routes/api/dev'));
+app.use('/api/comp', require('./routes/api/comp'));
 app.use('/api/auth', require('./routes/api/auth'));
 
 
