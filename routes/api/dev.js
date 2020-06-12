@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const developerRouter = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
@@ -12,7 +12,7 @@ const Developer = require('../../models/Dev');
 // @desc REGISTER DEVELOPER
 // @access Private
 
-router.post('/', [
+developerRouter.post('/', [
 
   check('email', 'Email is required')
     .isEmail(),
@@ -102,6 +102,6 @@ router.post('/', [
 
 });
 
-module.exports = router;
+module.exports = developerRouter;
 
 
